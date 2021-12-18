@@ -40,17 +40,20 @@
                 <div class="card">
                     <div class="card-header">Task List</div>
                     <div class="card-body">
-                        <form action=""></form>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Your Email">
-                                <div class="input-group-append">
-                                <button type="button" class="btn btn-danger"><i class="fas fa-minus"></i></button>
+                        <form id="form" action=""></form>
+                            <div class="row" style=" margin-bottom: 7px;">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Task Here">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="fas fa-minus"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="card-footer">
-                        <button type="button" class="btn btn-primary">Add Task</button>
+                        <button type="button" id="add" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Task</button>
                         <button type="button" class="btn btn-success">Save</button>
                     </div>
                 </div>
@@ -59,11 +62,79 @@
                 
             </div>
         </div>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Task</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <input type="text" id="task" class="form-control" placeholder="Enter Your Task Here">
+                        </div><br>
+                        <div class="form-check">
+                            <label for="optradio1" style=" margin-right: 25px;"><b>Importance :</b></label>
+                            <label class="form-check-label" style=" margin-right: 20px;">
+                                <input type="radio" class="form-check-input" id="radio1" name="optradio1" value="option1">Impotant
+                            </label>
+                            <label class="form-check-label" style=" margin-right: 20px;">
+                                <input type="radio" class="form-check-input" id="radio2" name="optradio1" value="option2" checked>Not-Impotant
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label for="optradio2" style=" margin-right: 25px;"><b>Urgency :</b></label>
+                            <label class="form-check-label" style=" margin-right: 20px;">
+                                <input type="radio" class="form-check-input" id="radio1" name="optradio2" value="option1">Urgent
+                            </label>
+                            <label class="form-check-label" style=" margin-right: 20px;">
+                                <input type="radio" class="form-check-input" id="radio2" name="optradio2" value="option2" checked>Not-Urgent
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" onclick="addTask()" class="btn btn-success" data-dismiss="modal">Save</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        function addTask() {
+            const div = document.createElement('div');
+            var task = document.getElementById('task').value;
+            div.className = 'row';
+
+            div.innerHTML = `
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Task Here" value="`+task+`">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="fas fa-minus"></i></button>
+                                    </div>
+                                </div>
+                            `;
+
+            document.getElementById('form').appendChild(div);
+        }
+
+        document.getElementById("add").onclick = function() {
+            document.getElementById('task').value = ''
+        }
+    </script>
 </body>
 </html>
