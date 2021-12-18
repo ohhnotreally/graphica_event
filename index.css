@@ -265,12 +265,15 @@ i {
 /* about page css */
 .about-section{
     font-size: x-large;
+    display: flexbox;
 
 }
 
 .info{
     width: 45vw;
+    display: inline-block;
 }
+
 
 .row{
     display: flexbox;
