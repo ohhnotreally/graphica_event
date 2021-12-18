@@ -260,3 +260,21 @@ i {
     height: 2%;
     background: #000;
 }
+
+
+/* about page css */
+.about-section{
+    font-size: x-large;
+
+}
+
+.info{
+    width: 45vw;
+}
+
+.row{
+    display: flexbox;
+}
+.column{
+    display: inline;
+}
