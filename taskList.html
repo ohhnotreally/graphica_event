@@ -44,6 +44,26 @@
                             <div class="row" style=" margin-bottom: 7px;">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Task Here">
+                                </div>
+                                <div class="input-group">
+                                    <div class="form-check">
+                                        <label for="optradio1" style=" margin-right: 25px;"><b>Importance :</b></label>
+                                        <label class="form-check-label" style=" margin-right: 20px;">
+                                            <input type="radio" class="form-check-input" id="radio1" name="optradio1" value="1">Impotant
+                                        </label>
+                                        <label class="form-check-label" style=" margin-right: 20px;">
+                                            <input type="radio" class="form-check-input" id="radio2" name="optradio1" value="2" checked>Not-Impotant
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label for="optradio2" style=" margin-right: 25px;"><b>Urgency :</b></label>
+                                        <label class="form-check-label" style=" margin-right: 20px;">
+                                            <input type="radio" class="form-check-input" id="radio3" name="optradio2" value="3">Urgent
+                                        </label>
+                                        <label class="form-check-label" style=" margin-right: 20px;">
+                                            <input type="radio" class="form-check-input" id="radio4" name="optradio2" value="4" checked>Not-Urgent
+                                        </label>
+                                    </div>
                                     <div class="input-group-append">
                                         <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
                                         <button type="button" class="btn btn-danger"><i class="fas fa-minus"></i></button>
@@ -82,19 +102,19 @@
                         <div class="form-check">
                             <label for="optradio1" style=" margin-right: 25px;"><b>Importance :</b></label>
                             <label class="form-check-label" style=" margin-right: 20px;">
-                                <input type="radio" class="form-check-input" id="radio1" name="optradio1" value="option1">Impotant
+                                <input type="radio" class="form-check-input" id="radio1" name="optradio1" value="1">Impotant
                             </label>
                             <label class="form-check-label" style=" margin-right: 20px;">
-                                <input type="radio" class="form-check-input" id="radio2" name="optradio1" value="option2" checked>Not-Impotant
+                                <input type="radio" class="form-check-input" id="radio2" name="optradio1" value="2" checked>Not-Impotant
                             </label>
                         </div>
                         <div class="form-check">
                             <label for="optradio2" style=" margin-right: 25px;"><b>Urgency :</b></label>
                             <label class="form-check-label" style=" margin-right: 20px;">
-                                <input type="radio" class="form-check-input" id="radio1" name="optradio2" value="option1">Urgent
+                                <input type="radio" class="form-check-input" id="radio3" name="optradio2" value="3">Urgent
                             </label>
                             <label class="form-check-label" style=" margin-right: 20px;">
-                                <input type="radio" class="form-check-input" id="radio2" name="optradio2" value="option2" checked>Not-Urgent
+                                <input type="radio" class="form-check-input" id="radio4" name="optradio2" value="4" checked>Not-Urgent
                             </label>
                         </div>
                     </div>
@@ -114,22 +134,55 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
+        var count = 0;
         function addTask() {
             const div = document.createElement('div');
             var task = document.getElementById('task').value;
+            var radio1 = document.getElementById('radio1').value;
+            var radio2 = document.getElementById('radio2').value;
+            var radio3 = document.getElementById('radio3').value;
+            var radio4 = document.getElementById('radio4').value;
+
             div.className = 'row';
 
             div.innerHTML = `
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Task Here" value="`+task+`">
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fas fa-minus"></i></button>
-                                    </div>
+                                <div class="input-group`+count+`">
+                                    <input type="text" class="form-control" placeholder="Task Here">
                                 </div>
                             `;
+                                // <div class="input-group">
+                                //     <div class="form-check">
+                                //         <label for="optradio1" style=" margin-right: 25px;"><b>Importance :</b></label>`+ imp +`
+                                //     </div>
+                                //     <div class="form-check">
+                                //         <label for="optradio2" style=" margin-right: 25px;"><b>Urgency :</b></label>`+ urg +`
+                                //     </div>
+                                // </div>
+
 
             document.getElementById('form').appendChild(div);
+            if (document.getElementById('radio1').checked) {
+                div.innerHTML = `<div class="input-group">
+                                    <div class="form-check">
+                                        <label for="optradio1" style=" margin-right: 25px;"><b>Importance :</b></label>
+                                        <label class="form-check-label" style=" margin-right: 20px;" checked>Impotant</label>
+                                    </div>`);
+                // var imp = `<label class="form-check-label" style=" margin-right: 20px;">Impotant</label>`;
+                console.log(radio1);
+            } else {
+                var imp = `<label class="form-check-label" style=" margin-right: 20px;">Not-Impotant</label>`;
+            // console.log(radio2);
+            }
+            
+            if (document.getElementById('radio3').checked) {
+                var urg = `<label class="form-check-label" style=" margin-right: 20px;">Urgent</label>`;
+            // console.log(radio3);
+            }else{
+                var urg = `<label class="form-check-label" style=" margin-right: 20px;">Not-Urgent</label>`;
+            // console.log(radio4);
+            }
+            // console.log(imp);
+            // console.log(urg);
         }
 
         document.getElementById("add").onclick = function() {
