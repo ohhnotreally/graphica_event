@@ -291,7 +291,7 @@ img:hover{
 
 .team{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .card{
@@ -308,6 +308,8 @@ img:hover{
 
 .row{
     display: flexbox;
+    height: auto;
+    width: 80vw;
 }
 .column{
     display: inline;
